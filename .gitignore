@@ -1,16 +1,6 @@
-# Python
-__pycache__/
-*.pyc
+# Ignore everything
+*
 
-# Virtual environment
-venv/
-
-# OS files
-.DS_Store
-
-# Docker
-*.tar
-
-# IDE
-.vscode/
-.idea/
+# Except the manifests folder
+!manifests/
+!manifests/**
