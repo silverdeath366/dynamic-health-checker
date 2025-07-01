@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: monitor-deployment
+  namespace: default
   labels:
     app: monitor
 spec:
@@ -17,6 +18,16 @@ spec:
       containers:
         - name: monitor
           image: silverdeath366/monitor:latest
-          imagePullPolicy: Always
           command: ["python3"]
           args: ["monitor.py"]
+          env:
+            - name: TELEGRAM_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-credentials
+                  key: TELEGRAM_BOT_TOKEN
+            - name: TELEGRAM_CHAT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: telegram-credentials
+                  key: TELEGRAM_CHAT_ID
